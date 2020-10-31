@@ -1,0 +1,64 @@
+html{
+    cursor: pointer;
+}
+#box{
+    width: 600px;
+    height: 400px;
+    border: 3px solid rgb(65, 10, 243);
+    margin: 50px auto;
+    box-shadow: rgba(1, 237, 245, 0.5) 1px 2px 3px 4px;
+    position: relative;
+}
+#fen,#shi,#unfen{
+    display: block;
+    width: 200px;
+    color: rgb(5, 255, 5);
+    font: 700 30px/30px "楷体";
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid rgb(6, 136, 243);
+}
+#fen b,#unfen b,#shi b{
+    display: inline-block;
+    width: 70px;
+    text-align: center;
+}
+#shi{
+    position: fixed;
+    color: saddlebrown;
+    top: 200px;
+    left: 10px;
+    font: 700 30px/30px "楷体";
+}
+#unfen{
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    color: red;
+    font: 700 30px/30px "楷体";
+}
+span{
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    background: rgb(5, 255, 5);
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    color: #fff;
+}
+
+button{
+    cursor: pointer;
+    margin-left: 290px;
+    background-color: rgba(69, 80, 241, 0.5);
+    border-color: rgba(1, 237, 245, 0.5);
+    width: 200px;
+    height: 50px;
+    outline: none;
+    color: #ff0000;
+    font: 900 40px/50px "楷体";
+}

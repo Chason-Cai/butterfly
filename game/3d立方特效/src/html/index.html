@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>基于WEBGL的3D立方体特效</title>
+    <meta name="description" content="A tutorial on how to create the Apple Fifth Avenue Cube using WebGL" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Lorenzo Cadamuro" />
+    <link rel="stylesheet" type="text/css" href="base.css" />
+    <script>
+      document.documentElement.className = "js"
+      var supportsCssVars = function() {
+        var e,
+          t = document.createElement("style")
+        return (t.innerHTML = "root: { --tmp-var: bold; }"), document.head.appendChild(t), (e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)"))), t.parentNode.removeChild(t), e
+      }
+      supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.")
+    </script>
+  </head>
+  <body class="demo-1">
+    <main>
+      <div class="frame">
+        <h1 class="frame__title">Apple Fifth Avenue Cube in WebGL</h1>
+        <div class="frame__links">
+          <a href="http://www.htmleaf.com/">jQuery之家</a>
+          <a href="http://www.htmleaf.com/html5/html5-canvas/202001155890.html">返回下载页</a>
+          <a href="https://github.com/lorenzocadamuro/apple-fifth-avenue" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="content"></div>
+    </main>
+  </body>
+</html>
