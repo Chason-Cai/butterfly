@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>贪吃蛇</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<button>按钮</button>
+</body>
+<script type="text/javascript">
+var timer;
+document.querySelector("button").onclick = function(){
+    // 蛇移动
+    timer = setInterval(()=>{
+        s.move();
+    },100)
+}
+// 地图对象，放蛇和食物
+function Map(){
+    this.map = document.createElement("div");
+    setStyle(this.map,{
+        width:"800px",
+        height:"500px",
+        background:"#f3f3f3",
+        border:"5px solid #ccc",
+        position:"relative",
+        margin:"50px auto"
+    })
+    document.body.appendChild(this.map);
+}
+var m = new Map();
+// 食物 父节点去子节点
+function Food(){
+    this.food = document.createElement("div");
+    setStyle(this.food,{
+        width:"10px",
+        height:"10px",
+        position:"absolute",
+        background:"blue",
+        left:parseInt(getRandom(0,m.map.clientWidth-10)/10)*10 + "px",
+        top:parseInt(getRandom(0,m.map.clientHeight-10)/10)*10 + "px"
+    })
+    m.map.appendChild(this.food);
+}
+var f = new Food();
+// 蛇
+function Snake(){
+    this.body = [
+        {
+            x:0,
+            y:0
+        },
+        {
+            x:10,
+            y:0
+        },
+        {
+            x:20,
+            y:0
+        }
+    ]
+    // 定义蛇默认方向
+    this.direction = "right";
+    // a左,w上,s下,d右,g=改变蛇运动方向
+    this.changeDirection();
+    // 显示蛇的身体
+    this.show();
+    
+}
+Snake.prototype.changeDirection = function(){
+    document.onkeypress = e =>{
+        var e = e || window.event;
+        // 获取键码
+        var code = e.keyCode || e.which;
+        // console.log(code); // w 119 s115 a97 d100
+        // 根据键码改变运动方向
+        switch(code){
+            case 119:
+                this.direction = "up";
+            break;
+            case 115:
+                this.direction = "down";
+            break;
+            case 97:
+                this.direction = "left";
+            break;
+            case 100:
+                this.direction = "right";
+            break;
+        }
+    }
+}
+Snake.prototype.move = function(){
+    // 蛇移动需要默认方向
+    // 蛇移动后一节要移动到前一节的位置
+    for(var i = 0;i<this.body.length-1;i++){
+        this.body[i].x = this.body[i+1].x;
+        this.body[i].y = this.body[i+1].y;
+    }
+    // 蛇方向判断
+    switch(this.direction){
+        case "up":
+            this.body[this.body.length-1].y -=10;
+        break;
+        case "down":
+            this.body[this.body.length-1].y +=10;
+        break;
+        case "left":
+            this.body[this.body.length-1].x -=10;
+        break;
+        case "right":
+            this.body[this.body.length-1].x +=10;
+        break;
+    }
+    // 新数组显示身体
+    this.show();
+    this.eat();
+    this.die();
+}
+Snake.prototype.die = function(){
+    // 撞墙死亡
+    if(this.body[this.body.length-1].x >= m.map.clientWidth || this.body[this.body.length-1].x < 0 || this.body[this.body.length-1].y < 0 || this.body[this.body.length-1].y >= m.map.clientHeight){
+        clearInterval(timer);
+        alert("GAME OVER!!!");
+    }
+    // 撞到自己身体
+    for(var i = 0;i<this.body.length-1;i++){
+        if(this.body[i].x ==this.body[this.body.length-1].x && this.body[i].y ==this.body[this.body.length-1].y){
+            clearInterval(timer);
+            alert("GAME OVER!!!");
+        }
+    }
+}
+Snake.prototype.eat = function(){
+    if(this.body[this.body.length-1].x == f.food.offsetLeft && this.body[this.body.length-1].y == f.food.offsetTop){
+        // top,left值相同,蛇加1，食物消失
+        var oneBody = {
+            x:this.body[0].x,
+            y:this.body[0].y
+        }
+        this.body.unshift(oneBody);
+        // 根据新数组形成新身体
+        this.show();
+        f.food.parentElement.removeChild(f.food);
+        f = new Food();
+    }
+}
+Snake.prototype.show = function(){
+    // 删除移动之前身体
+    var snakes = m.map.querySelectorAll(".active");
+    if(snakes.length !== 0){
+        for(let i = 0;i<snakes.length;i++){
+            snakes[i].parentElement.removeChild(snakes[i]);
+        }
+    }
+    // 遍历身体属性,创建div
+    for(let i = 0;i<this.body.length;i++){
+        let div = document.createElement("div");
+        div.className = "active";
+        setStyle(div,{
+            width:"10px",
+            height:"10px",
+            position:"absolute",
+            background:"#0ff",
+            left:this.body[i].x + "px",
+            top:this.body[i].y +"px"
+        });
+        if(i==this.body.length-1){
+            div.style.background = "red";
+        }
+        m.map.appendChild(div);
+    }
+}
+var s = new Snake();
+// 设置样式
+function setStyle(ele,styleObj){
+    for(var attr in styleObj){
+        ele.style[attr] = styleObj[attr];
+    }
+}
+// 获取随机数
+function getRandom(n,m){
+    var abs = Math.abs(n-m);
+    var min = Math.min(n,m);
+    var res = parseInt(Math.random(n,m)*abs+min);
+    return res;
+}
+</script>
+</html>

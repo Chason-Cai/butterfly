@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.banner{
+    width: 500px;
+    height: 300px;
+    border:1px solid #000;
+    position: relative;
+    margin: 20px auto;
+}
+.banner ul li a img{
+    width: 500px;
+    height: 300px;
+}
+.banner ul li{
+    display: none;
+}
+.banner ul li.active{
+    display:block;
+}
+.banner ol{
+    width: 60px;
+    height: 20px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius:10px;
+    position: absolute;
+    left:50%;
+    bottom:10px;
+    transform: translateX(-50%);
+}
+.banner ol li{
+    width: 10px;
+    height: 10px;
+    background-color: skyblue;
+    border-radius:50%;
+    float:left;
+    margin:5px;
+}
+.banner ol li.active{
+    background-color: #f00;
+}
+.banner>a{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 40px;
+    background-color:rgba(10,10,10,0.5);
+    text-align: center;
+    line-height: 40px;
+    color:#fff;
+    font-weight:bold;
+    font-size:20px;
+}
+.banner>a.left{
+    left: 0;
+}
+.banner>a.right{
+    right: 0;
+}
+.goods{
+    width: 500px;
+    height: 300px;
+    border:1px solid #000;
+    position: relative;
+    margin: 20px auto;
+}
+.goods ul li a img{
+    width: 500px;
+    height: 300px;
+}
+.goods ul li{
+    display: none;
+}
+.goods ul li.active{
+    display:block;
+}
+.goods ol{
+    width: 60px;
+    height: 20px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius:10px;
+    position: absolute;
+    left:50%;
+    bottom:10px;
+    transform: translateX(-50%);
+}
+.goods ol li{
+    width: 10px;
+    height: 10px;
+    background-color: skyblue;
+    border-radius:50%;
+    float:left;
+    margin:5px;
+}
+.goods ol li.active{
+    background-color: #f00;
+}
+.goods>a{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 40px;
+    background-color:rgba(10,10,10,0.5);
+    text-align: center;
+    line-height: 40px;
+    color:#fff;
+    font-weight:bold;
+    font-size:20px;
+}
+.goods>a.left{
+    left: 0;
+}
+.goods>a.right{
+    right: 0;
+}
+</style>
+<body>
+<div class="banner">
+    <ul>
+        <li class="active">
+            <a href="#">
+                <img src="./images/1.jpg">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="./images/2.jpg">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="./images/3.jpg">
+            </a>
+        </li>
+    </ul>
+    <ol>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+    </ol>
+    <a href="javascript:;" class="left"><</a>
+    <a href="javascript:;" class="right">></a>
+</div>
+</body>
+<script type="text/javascript">
+function Circle(classname,time){    //定义
+    this.box = document.querySelector(classname);
+    this.ulis = this.box.querySelectorAll("ul li");
+    this.olis = this.box.querySelectorAll("ol li");
+    this.right = this.box.querySelector("a.right");
+    this.left = this.box.querySelector("a.left");
+    this.index = 0;
+    this.time = time;
+}
+
+Circle.prototype.init = function(){ 
+    this.right.onclick = ()=>{
+        this.rightClick();
+    }
+    this.left.onclick = ()=>{
+        this.leftClick();
+    }
+    for(let i = 0;i<this.olis.length;i++){
+        this.olis[i].onclick = ()=>{
+            this.pointClick(i);
+        }
+    }
+    this.auto = setInterval(()=>{    //不定义，自动给this对象开辟一个auto属性 不建议
+        this.index++;
+        this.import();
+    },this.time)
+    this.box.onmouseover = ()=>{
+        clearInterval(this.auto);
+    }
+    this.box.onmouseout = ()=>{
+        this.auto =setInterval(()=>{
+            this.index++;
+            this.import();
+        },this.time)
+    }
+}
+Circle.prototype.rightClick = function(){
+    this.index++;
+    this.import();
+}
+Circle.prototype.leftClick = function(){
+    this.index--;
+    this.import();
+}
+Circle.prototype.pointClick = function(index){
+    this.index = index;
+    this.import();
+}
+Circle.prototype.import = function(){
+    if(this.index == this.ulis.length){
+        this.index = 0;
+    }
+    if(this.index <0){
+        this.index = this.ulis.length-1;
+    }
+    for(var i = 0;i<this.ulis.length;i++){
+        this.ulis[i].className = "";
+        this.olis[i].className = "";
+    }
+    this.olis[this.index].className = this.ulis[this.index].className = "active";
+}
+var a = new Circle(".banner",1000);
+a.init();
+
+
+</script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+<div class="box">
+    <div class="shi">00时00分00秒000毫秒</div>
+ <button id="start" >开始</button>
+ <button id="pause" >暂停</button>
+</div>
+
+ <script>
+function Time(){
+    this.ms = 0; // 毫秒
+    this.s = 0; // 秒
+    this.m = 0; // 分钟
+    this.h = 0; // 小时
+    this.msStr = '';
+    this.sStr = '';
+    this.mStr = '';
+    this.hStr = '';
+    this.time = 0;
+    this.oDiv = document.querySelector('.shi');
+    this.oStart = document.querySelector('#start'); // 开始
+    this.oPause = document.querySelector('#pause'); // 暂停
+
+    var time;
+}
+
+Time.prototype.init = function(){
+    this.flag1 = true;
+    this.flag2 = true;
+    this.oStart.onclick =  ()=>{
+        if(this.flag1 == true){
+            this.oStart.innerText = "重置";
+            this.setTimeStr();
+            this.flag1 =false;
+        }else if(this.flag1 == false){
+            this.oStart.innerText = "开始";
+            this.ms = 0; 
+            this.s = 0; 
+            this.m = 0; 
+            this.h = 0; 
+            this.oDiv.innerHTML = '00时00分00秒000毫秒';
+            this.flag1 =true;
+            clearInterval(time);
+        }
+    }
+    this.oPause.onclick =  ()=>{
+        if(this.flag2 == true){
+            this.oPause.innerText = "继续";
+            clearInterval(time);
+            this.flag2 =false;
+        }else if(this.flag2 == false){
+            this.oPause.innerText = "暂停";
+            this.setTimeStr();
+            this.flag2 =true;
+        }
+    }
+}
+
+
+
+Time.prototype.setTimeStr = function(){  
+   time = setInterval(()=>{
+    this.ms++;
+    if(this.ms == 250){
+    this.s++;  
+    this.ms = 0; 
+    }
+
+    if(this.s == 60){
+     this.m++;  
+     this.s = 0;  
+    }
+
+    if(this.m == 60){
+     this.h++;  
+     this.m = 0;  
+    }
+
+    if(this.h == 100){
+     this.h = 0;
+    }
+
+    if(this.ms < 10){
+     this.msStr = '00' + this.ms;
+    }else if(this.ms < 100){
+        this.msStr = '0' + this.ms;
+    }else{
+     this.msStr = this.ms;
+    }
+
+    if(this.s < 10){
+    this.sStr = '0' + this.s;
+    }else{
+     this.sStr = this.s;
+    }
+
+    if(this.m < 10){
+     this.mStr = '0' + this.m;
+    }else{
+     this.mStr = this.m;
+    }
+
+    if(this.h < 10){
+     this.hStr = '0' + this.h;
+    }else{
+     this.hStr = this.h;
+    }
+    this.oDiv.innerHTML = `${this.hStr}时${this.mStr}分${this.sStr}秒${this.msStr}毫秒`;
+   } , 1);  
+  } 
+
+  var a = new Time(".box"); 
+a.init();
+ </script>
+</body>
+</html>

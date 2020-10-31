@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+a{
+color:#000;
+}
+.content{
+    width: 240px;
+    height: 350px;
+    margin:30px auto;
+    overflow: hidden;
+    position: relative;
+}
+.content:hover{
+    cursor: pointer;
+}
+.content ul li{
+    display: none;
+}
+.content ul li.active{
+    display: block;
+}
+.content ul li a{
+    display: block;
+    color: black;
+}
+.content ul li a img{
+    width: 240px;
+    height: 350px;
+}
+.content ul li a span{
+    position: absolute;
+    width: 240px;
+    bottom: 0px;
+    height: 35px;
+    line-height: 35px;
+    display: block;
+    text-align: center;
+    background-color: rgba(200, 200, 200, 0.5);
+    font-size: 14px;
+    color:black;
+    left: 0;
+}
+.content>a{
+    display:block;
+    position: absolute;
+    top:95%;
+    transform: translateY(-50%);
+    color:#000;
+    font-size:20px;
+    line-height:2;
+    text-align: center;
+}
+
+.content .left{
+    left: 0;
+}
+.content .right{
+    right: 0;
+}
+.point{
+    display: flex;
+    width: 100px;
+    justify-content: space-evenly;
+    align-items: center;
+    height:20px;
+    border-radius:10px;
+    position: absolute;
+    bottom:40px;
+    left:50%;
+    transform: translateX(-50%);
+}
+.point li{
+    width: 5px;
+    height: 5px;
+    background-color: #ccc;
+    
+}
+.point li.active{
+    background-color: orange;
+}
+
+</style>
+<body>
+    <div class="content">
+        <ul>
+            <li class="active">
+                <a href="#">
+                    <img src="img/1.jpg" alt="">
+                    <span>好浪漫！狮子猎豹蹲坐"彩虹尽头"</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/2.jpg" alt="">
+                    <span>刘炜宣布退役 回顾传奇"8号"</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/3.jpg" alt="">
+                    <span>疑似吴亦凡女友生活照模样清纯</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/4.jpg" alt="">
+                    <span>不做韭菜，叶女侠带你修炼</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/5.jpg" alt="">
+                    <span>007新武器阿斯顿·马丁Valhalla</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/6.jpg" alt="">
+                    <span>靠网红发卡凹出少女感</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="img/7.jpg" alt="">
+                    <span>河北饶阳："民族乐器进校园"</span>
+                </a>
+            </li>
+        </ul>
+        <ol class="point">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <a href="#" class="left">&lt;</a>
+        <a href="#" class="right">&gt;</a>
+    </div>
+</body>
+<script>
+var box = document.querySelector(".content");
+var ul = box.querySelector("ul");
+var ulis = box.querySelectorAll("ul li")
+var olis = box.querySelectorAll("ol li")
+var left = box.querySelector("a.left")
+var right = box.querySelector("a.right")
+var index = 0;
+var uliThat = box.querySelector("ul li.active")
+var oliThat = box.querySelector("ol li.active");
+var timerId;
+function carousel(){
+    if(index<0){
+        index = ulis.length-1;
+    }
+    if(index>ulis.length-1){
+        index = 0;
+    }
+    uliThat.className = '';
+    ulis[index].className = 'active';
+    uliThat = ulis[index];
+    oliThat.className = '';
+    olis[index].className = 'active';
+    oliThat = olis[index];
+}
+var firstLi = ul.firstElementChild.cloneNode(true);
+var lastLi = ul.lastElementChild.cloneNode(true);
+// ul.appendChild(firstLi);
+// ul.insertBefore(lastLi,ul.children[0]);
+// ul.style.width = firstLi.offsetWidth * ul.children.length + "px";
+// ul.style.left = -index * firstLi.offsetWidth + "px";
+right.onclick = function(){
+    index++;
+    carousel()
+    return false;
+}
+left.onclick = function(){
+    index--;
+    carousel()
+    return false;
+}
+for(let i=0;i<olis.length;i++){
+    olis[i].onclick = function(){
+        index = i;
+        carousel()
+    }
+}
+auto()
+box.onmouseover = function(){
+    clearInterval(timerId)
+
+}
+box.onmouseout = function(){
+    auto()
+}
+function auto(){
+    timerId = setInterval(function(){
+        index++;
+        carousel()
+    },1000);
+}
+</script>
+</html>

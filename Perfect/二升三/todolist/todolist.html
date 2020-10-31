@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ToDoList</title>
+    <style type="text/css">
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            font-family: "楷体";
+        }
+        
+        body,
+        span,
+        input,
+        h3,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            width: 100%;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        header .header-heart,
+        main .main-heart {
+            width: 600px;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+        
+        header .header-heart span {
+            cursor: pointer;
+            color: #ddd;
+            margin-right: 150px;
+        }
+        
+        header .header-heart .text {
+            font-size: 14px;
+            outline: none;
+            border-radius: 3px;
+            height: 18px;
+            width: 320px;
+            padding: 3px 10px;
+            box-shadow: 1px 2px 3px 4px;
+        }
+        
+        h3 {
+            display: inline-block;
+        }
+        
+        header .header-heart>div,
+        main .main-heart>div {
+            height: 30px;
+            line-height: 30px;
+            margin: 20px 0;
+        }
+        
+        main .main-heart>div>span {
+            float: right;
+            height: 20px;
+            text-align: center;
+            padding: 0 5px;
+            background: #fff;
+            border-radius: 10px;
+            font: 800 16px/20px "楷体";
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .doing li,
+        .end li {
+            position: relative;
+            background: #fff;
+            height: 30px;
+            border-left: #00f 5px solid;
+            border-radius: 5px;
+        }
+        
+        .end li {
+            background: #999;
+            border-left: #666 5px solid;
+        }
+        
+        .doing li .check,
+        .end li .check {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 5px;
+            left: 15px;
+        }
+        
+        .doing li p,
+        .end li p {
+            cursor: all-scroll;
+            line-height: 30px;
+            margin-left: 40px;
+        }
+        
+        .doing p input,
+        .end p input {
+            cursor: all-scroll;
+            width: 500px;
+            height: 25px;
+            border: none;
+            font-size: 14px;
+            padding: 0 5px;
+        }
+        
+        .end li .check {
+            background: #999;
+        }
+        
+        .end p input {
+            background: #999;
+        }
+        
+        .doing li a,
+        .end li a {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            height: 20px;
+            padding: 0 5px;
+            text-align: center;
+            background: #f00;
+            border-radius: 10px;
+            font: 800 12px/20px "楷体";
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-heart">
+            <span>ToDoList</span><input class="text" type="text" placeholder="添加待办事项">
+        </div>
+    </header>
+    <main>
+        <div class="main-heart">
+            <div>
+                <h3>肝他</h3> <span>0</span></div>
+            <ul class="doing"></ul>
+            <div>
+                <h3>干的真棒</h3> <span>0</span></div>
+            <ul class="end"></ul>
+        </div>
+    </main>
+</body>
+<script src="../todolist/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        add()
+        $(document).keydown((e) => {
+            if (e.keyCode == 13) {
+                add();
+                clearVal()
+            }
+        })
+        next()
+        back()
+        alter()
+    }
+
+    // 修改事件
+    function alter() {
+        var title = $("li ")
+    }
+
+
+
+    // 完成=>进行的事件
+    function back() {
+        // checkbox点击
+        $(".end").click(function(e) {
+            var e = e || window.event
+                // 处理本地存储
+            var data = localStorage.getItem("things");
+            data = JSON.parse(data)
+            if (e.target.className == "check") {
+                var text = $(e.target).next().children().val()
+                    // console.log(text);
+                    // 正在进行
+                var index = data.findIndex(v => v.title == text && v.done == true)
+                    // console.log(index);
+                data[index].done = false
+                $(e.target).parent().remove();
+                // 完成
+                var crr = data.filter(function(done, i) {
+                    return data[i].done == true
+                });
+                // 进行
+                var brr = data.filter(function(done, i) {
+                    return data[i].done == false
+                });
+                data = crr.concat(brr)
+                    //完成
+                var str = ""
+                brr.forEach((title, i) => {
+                    str = `
+        <li>
+        <input class="check" type="checkbox" checked>
+        <p><input type="text" value="${brr[i].title}"></p>
+        <a href="javascript:;">del</a>
+        </li>
+        ` + str
+                })
+                $(".doing").html(str);
+                var number = brr.length
+                $(".doing").prev().children("span").text(number)
+                var number = crr.length
+                $(".end").prev().children("span").text(number)
+
+            } else if (e.target.nodeName == "A") {
+                var crr = data.filter(function(done, i) {
+                    return data[i].done == true
+                });
+                var text = $(e.target).prev().children().val()
+                var index = data.findIndex(v => v.title == text)
+                    // console.log(index);
+                    // 删除这条下标对应数据
+                data.splice(index, 1)
+                    // console.log(data);
+                $(e.target).parent().remove();
+                var number = crr.length - 1
+                $(".end").prev().children("span").text(number)
+            }
+
+            data = JSON.stringify(data)
+            localStorage.setItem("things", data)
+        })
+    }
+
+    // 处理进行=>完成的事件
+    function next() {
+        // checkbox点击
+        $(".doing").click(function(e) {
+            var e = e || window.event;
+            // 处理本地存储
+            var data = localStorage.getItem("things");
+            data = JSON.parse(data)
+                // console.log(e.target.className);
+            if (e.target.className == "check") {
+                // console.log(111);
+                var text = $(e.target).next().children().val()
+                    // console.log(text);
+                    // 正在进行
+                var index = data.findIndex(v => v.title == text && v.done == false)
+                    // console.log(index);
+                data[index].done = true
+                $(e.target).parent().remove();
+                // 完成
+                var crr = data.filter(function(done, i) {
+                    return data[i].done == true
+                });
+                // 进行
+                var brr = data.filter(function(done, i) {
+                    return data[i].done == false
+                });
+                data = crr.concat(brr)
+                    //完成
+                var str = ""
+                crr.forEach((title, i) => {
+                    str = `
+        <li>
+        <input class="check" type="checkbox" checked>
+        <p><input type="text" value="${crr[i].title}"></p>
+        <a href="javascript:;">del</a>
+        </li>
+        ` + str
+                })
+                $(".end").html(str);
+                var number = crr.length
+                $(".end").prev().children("span").text(number)
+
+                var number = brr.length
+                $(".doing").prev().children("span").text(number)
+
+            } else if (e.target.nodeName == "A") {
+                // 进行
+                var brr = data.filter(function(done, i) {
+                    return data[i].done == false
+                });
+                var text = $(e.target).prev().children().val()
+                var index = data.findIndex(v => v.title == text)
+                    // console.log(index);
+                    // 删除这条下标对应数据
+                data.splice(index, 1)
+                    // console.log(data);
+                $(e.target).parent().remove();
+                var number = brr.length - 1
+                $(".doing").prev().children("span").text(number)
+            }
+            data = JSON.stringify(data)
+            localStorage.setItem("things", data)
+        })
+    }
+
+    // 添加事件后清空输入行
+    function clearVal() {
+        $(".text").val("")
+    }
+
+    // 添加事件
+    function add() {
+        var title = $("input").val();
+        // var done = $(".check").prop("checked");
+        var data = localStorage.getItem("things")
+            // 如果本地有数据
+        if (data) {
+            data = JSON.parse(data);
+            // 输入框有内容
+            if (title) {
+                var obj = {
+                        title,
+                        done: false
+                    }
+                    // 添加数据
+                data.unshift(obj);
+                var str = ""
+                    // 遍历数据
+                var brr = data.filter(function(done, i) {
+                    return data[i].done == false
+                });
+
+                brr.forEach((title, i) => {
+                    str += `
+        <li>
+        <input class="check" type="checkbox">
+        <p><input type="text" value="${brr[i].title}"></p>
+        <a href="javascript:;">del</a>
+        </li>
+        `
+                })
+                var number = brr.length
+                $(".doing").prev().children("span").text(number)
+                $(".doing").html(str);
+                data = JSON.stringify(data)
+                localStorage.setItem("things", data)
+
+                // next();  
+                return false;
+            } else {
+                var str = ""
+                    // 没有直接遍历展示
+
+                var brr = data.filter(function(done, i) {
+                    return data[i].done == false
+                });
+                brr.forEach((title, i) => {
+                    str += `
+        <li>
+        <input class="check" type="checkbox">
+        <p><input type="text" value="${brr[i].title}"></p>
+        <a href="javascript:;">del</a>
+        </li>
+        `
+                })
+                var number = brr.length
+                $(".doing").prev().children("span").text(number)
+                $(".doing").html(str);
+
+                var crr = data.filter(function(done, i) {
+                    return data[i].done == true
+                });
+                var str = ""
+                crr.forEach((title, i) => {
+                    str += `
+        <li>
+        <input class="check" type="checkbox" checked>
+        <p><input type="text" value="${crr[i].title}"></p>
+        <a href="javascript:;">del</a>
+        </li>
+        `
+                })
+                var number = crr.length
+                $(".end").prev().children("span").text(number)
+                $(".end").html(str);
+                return false;
+            }
+        } else {
+            var arr = [];
+            if (title) {
+                var obj = {
+                    title,
+                    done: false
+                }
+                arr.unshift(obj);
+                var str = ""
+                arr.forEach((title, i) => {
+                    str += `
+        <li>
+        <input class="check" type="checkbox">
+        <p><input type="text" value="${arr[i].title}"></p>
+        <a href="javascript:;">del</a>
+        </li>
+        `
+                })
+                var number = arr.length
+                $(".doing").prev().children("span").text(number)
+                $(".doing").html(str);
+                // 存数据
+                arr = JSON.stringify(arr)
+                localStorage.setItem("things", arr)
+            }
+        }
+    }
+</script>
+
+</html>

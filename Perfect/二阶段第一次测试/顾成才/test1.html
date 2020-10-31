@@ -1,0 +1,150 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格</title>
+    <style>
+        .add{
+            margin: 100px 500px;
+            display: none;
+            width: 500px;
+        }
+        .table{
+            display: block;
+        }
+        .addTr{
+            font-size: 16px;
+            margin-left: 20px;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="add">
+        <h1>表单添加</h1>
+        姓名：<input type="text" class="name"><br>
+        年龄：<input type="text" class="age"><br>
+        性别：<input type="text" class="sex"><br>
+        <button class="btn">添加</button><br>
+    </div>
+    <div class="table">
+        <table width = "500" border="1">
+            <caption>
+                <h1>
+                    内容展示
+                    <span class="addTr">添加</span>
+                </h1>
+            </caption>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>张三</td>
+                    <td>15</td>
+                    <td>男</td>
+                    <td>删除</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+var add = document.querySelector(".add");
+var table = document.querySelector(".table");
+var btn = document.querySelector(".btn");
+var trs = document.querySelectorAll(".tr");
+var tbody = document.querySelector("tbody");
+var addTr = document.querySelector(".addTr")
+var dels = document.querySelectorAll('tbody tr td:last-child')
+console.log(dels)
+btn.onclick = function(){
+    var name = document.querySelector(".name").value;
+    var age = document.querySelector(".age").value;
+    var sex = document.querySelector(".sex").value;
+    add.style.display = "none";
+    table.style.display = "block";
+    if(name == ''){
+        alert("请输入姓名！！！");
+        document.querySelector(".name").value = '';
+        document.querySelector(".age").value = '';
+        document.querySelector(".sex").value = '';
+        return false; 
+    }
+    if(age == ''){
+        alert("请输入年龄！！！");
+        document.querySelector(".name").value = '';
+        document.querySelector(".age").value = '';
+        document.querySelector(".sex").value = '';
+        return false; 
+    }else if(isNaN(age)){
+        alert("输入年龄不符合规则！！！");
+        document.querySelector(".name").value = '';
+        document.querySelector(".age").value = '';
+        document.querySelector(".sex").value = '';
+        return false; 
+    }
+    if(sex == ''){
+        alert("请输入性别！！！");
+        document.querySelector(".name").value = '';
+        document.querySelector(".age").value = '';
+        document.querySelector(".sex").value = '';
+        return false; 
+    }
+    
+    for(var i=0;i<dels.length;i++){
+        dels[i].onclick = function(){
+            var tr = this.parentElement
+            tr.parentElement.removeChild(tr);
+        }
+    }
+    var tr = document.createElement("tr");
+var nameTd = document.createElement("td");
+nameTd.innerText = name;
+tr.appendChild(nameTd);
+var ageTd = document.createElement("td");
+ageTd.innerText = age;
+tr.appendChild(ageTd);
+var sexTd = document.createElement("td");
+sexTd.innerText = sex;
+tr.appendChild(sexTd);
+var actionTd = document.createElement("td");
+actionTd.innerText = "删除";
+tr.appendChild(actionTd);
+document.querySelector("tbody").appendChild(tr);
+document.querySelector(".name").value = '';
+document.querySelector(".age").value = '';
+document.querySelector(".sex").value = '';
+
+}
+for(var i=0;i<dels.length;i++){
+        dels[i].onclick = function(){
+            var tr = this.parentElement
+            tr.parentElement.removeChild(tr);
+        }
+    }
+// console.log(dels)
+addTr.onclick = function(){
+    add.style.display = "block";
+    table.style.display = "none"
+}
+// function bindEvent(){
+//   var tds = document.querySelectorAll("td:last-child");
+//   var trs = document.querySelectorAll("tr");
+//   for(let i=0;i<tds.length;i++){
+//     tds[i].setAttribute("index",i);
+//     tds[i].onclick = function(){
+//         tbody.removeChild(tbody.childNodes[i]);
+//     }
+//   }
+// }
+
+</script>
+</html>

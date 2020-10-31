@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>烟花</title>
+<style type="text/css">
+*{margin: 0;padding: 0;}
+</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+function Fire(){
+    // 创建夜空盒子背景
+    this.night = document.createElement("div");
+    this.setStyle(this.night,{
+        width: "1000px",
+        height: "500px",
+        backgroundColor: "#1E135A",
+        border: "yellow solid 5px",
+        margin: "100px auto",
+        position: "relative"
+    });
+    // 夜空放入body中
+    document.body.appendChild(this.night);
+    // 给夜空绑定单击事件
+    this.night.onclick = e =>{
+        var e = e || window.event;
+        var x = e.offsetX;
+        var y = e.offsetY;
+        // 创建一个原始火花,底部往上
+        this.OneFire(x,y);
+    }
+}
+// 创建一个小火花
+Fire.prototype.OneFire = function(x,y){
+    var div = document.createElement("div");
+    this.setStyle(div,{
+        width: "10px",
+        height: "10px",
+        backgroundColor: this.getcolor(),
+        position: "absolute",
+        left: x + "px",
+        bottom: 0,
+        borderRadius: "40%"
+    });
+    // 小火花放入夜空
+    this.night.appendChild(div);
+    // 让小火花运动 - 上升
+    this.move(div,{top:y},()=>{
+        // 将上来的火花删掉
+        div.parentElement.removeChild(div);
+        // 创建很多小火花
+        this.ManyFire(x,y);
+    })
+}
+
+Fire.prototype.ManyFire = function(x,y){
+    var num = this.getRandom(25,30);
+    // 通过循环创建多个小火花
+    for(let i = 0;i<num;i++){
+        let div = document.createElement("div");
+        this.setStyle(div,{
+            width: "10px",
+            height: "10px",
+            backgroundColor: this.getcolor(),
+            position: "absolute",
+            left: x + "px",
+            top: y + "px",
+            borderRadius: "50%"
+        });
+        // 小火花放入夜空
+        this.night.appendChild(div);
+        // 获取多个小火花随机left
+        var l = this.getRandom(0,this.night.clientWidth-10);
+        // 获取多个小火花随机top
+        var t = this.getRandom(0,this.night.clientHeight-10);
+        this.move(div,{left: l,top: t},function(){
+            // 删除多个小火花
+            div.parentElement.removeChild(div);
+        })
+    }
+}
+
+// 烟花运动,先快后慢运动
+Fire.prototype.move = function(ele,styleObj,fn=null){
+    var timer = {};
+    for(let attr in styleObj){
+        let target = styleObj[attr];     // 运动结束样式
+        let currentStyle = parseInt(this.getStyle(ele,attr));    // 获取运动前所有样式
+        if(attr == "opacity"){  // 透明度特殊设置
+            currentStyle = currentStyle*100;
+            target = target*100;
+        }
+        timer[attr] = setInterval(function(){
+            let speed = target - currentStyle;
+            let percent;
+            if(speed < 0){
+                percent = Math.floor(speed/10);
+            }else{
+                percent = Math.ceil(speed/10);
+            }
+            currentStyle += percent;
+            if(currentStyle == target){
+                clearInterval(timer[attr]);
+                delete timer[attr];
+                var k = 0;
+                for(var i in timer){
+                    k++;
+                }
+                if(k == 0){
+                    // ele.style.background = "red";
+                    if(fn){
+                        fn();
+                    }
+                }
+            }else{
+                if(attr == "opacity"){
+                    ele.style[attr] = currentStyle/100;
+                }else{
+                    ele.style[attr] = currentStyle + "px";
+                }
+            }
+        },30);
+    }
+}
+
+// 获取随机颜色
+Fire.prototype.getcolor = function(){
+    return `rgb(${this.getRandom(0,256)},${this.getRandom(0,256)},${this.getRandom(0,256)})`;
+}
+
+// 获取随机数
+Fire.prototype.getRandom = function(a,b){
+    return Math.floor(Math.random()*(a-b))+b;
+}
+
+// 设置样式
+Fire.prototype.setStyle = function(ele,styleObj){
+    for(var attr in styleObj){
+        ele["style"][attr] = styleObj[attr];
+    }
+}
+
+// 获取样式
+Fire.prototype.getStyle = function(ele,attr){
+    if(window.getComputedStyle(ele)[attr]){
+        return window.getComputedStyle(ele)[attr];
+    }else{
+        return ele.currentStyle[attr];
+    }
+}
+
+var f = new Fire();
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排年龄</title>
+</head>
+<style>
+    table{
+        width: 500px;
+    }
+</style>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+<script>
+var arr = [
+	{
+		"name":"张三",
+		"age":20,
+		"sex":"男",
+	},
+	{
+		"name":"李四",
+		"age":18,
+		"sex":"女",
+	},
+	{
+		"name":"王五",
+		"age":22,
+		"sex":"男",
+	},
+]
+var tbody = document.querySelector("tbody");
+
+loadHTML();
+
+
+function loadHTML(){
+  tbody.innerHTML = '';
+    for(let j=0;j<arr.length-1;j++){
+        for(let i=0;i<arr.length-1;i++){
+            if(arr[i].age>arr[i+1].age){
+                var a = arr[i].age;
+                arr[i].age = arr[i+1].age;
+                arr[i+1].age = a;
+            }
+        }
+    }
+  for(var i=0;i<arr.length;i++){
+    tbody.innerHTML = tbody.innerHTML + '<tr><td>' + arr[i].name + '</td><td class = "age">'+arr[i].age+'</td><td>'+arr[i].sex;
+  }
+}
+
+
+</script>
+</html>

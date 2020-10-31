@@ -1,0 +1,374 @@
+.header-top{
+    width: 1145px;
+    height: 58px;
+    background-color: #e83928;
+}
+.head-top{
+    width: 1024px;
+    height: 58px;
+    margin: 0 auto;
+}
+.head-top .img-top{
+    width: 133px;
+    height: 19px;
+    margin: 20px 113px 0px 10px;
+    float: left;
+}
+.head-top .shou{
+    width: 476px;
+    height: 22px;
+    float: left;
+    margin-top: 22px;
+
+}
+.head-top .shou li{
+    height: 22px;
+    float: left;
+    padding: 0;
+    margin-left: 42px;
+}
+.head-top .shou li a{
+    font-size: 12px;
+    color: white;
+}
+.head-top .shou li:hover{
+    border-bottom: 1px solid white;
+
+}
+.head-top .qq{
+    width: 214px;
+    height: 21px;
+    margin: 17px 0 0 75px;
+    float: left;
+}
+.head-top .qq li{
+    float: left;
+}
+.head-top .qq .img1{
+    margin-right: 11px;
+}
+.head-top .qq .img2{
+    margin-right: 5px;
+    margin-left: 13px;
+}
+.head-top .qq .phone{
+    color: white;
+    font-size: 15px;
+    height: 21px;
+    line-height: 21px;
+}
+.banner{
+    width: 1145px;
+    height: 749px;
+    display: block;
+    background: white;
+}
+.banner .img{
+    width: 1145px;
+    height: 520px;
+    background: burlywood;
+}
+.banner .plate1{
+    width: 1024px;
+    height: 229px;
+    margin: 0 auto;
+}
+.banner .plate1 dl{
+    width: 176px;
+    height: 183px;
+    float: left;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 14px;
+    border-left: 1px dashed #afafaf;
+}
+.banner .plate1 .pla1{
+    width: 176px;
+    text-align: center;
+    margin-left: -34px;
+    border-left: 0;
+}
+.banner .plate1 dt{
+    margin-top: 15px;
+}
+.banner .plate1 h3{
+    line-height: 52px;
+    height: 52px;
+    font-size: 17px;
+    color: #58555e;
+}
+.banner .plate1 dd{
+    line-height: 22px;
+    height: 6px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.banner .plate1 dd a{
+    font-size: 12px;
+    color: #767d75;
+    line-height: 22px;
+    height: 6px;
+}
+.banner .plate1 .pla2{
+    width: 172px;
+    margin-left: 4px;
+    margin-left: 0;
+}
+.content1{
+    width: 1145px;
+    height: 490px;
+    background: #eeeeee;
+}
+.content1 .con{
+    width: 1024px;
+    height: 423px;
+    background: #eeeeee;
+    margin: 0 auto;
+}
+.content1 .con .con-1{
+    width: 144px;
+    height: 36px;
+    float: left;
+    margin-left: 14px;
+    margin-top: 42px;
+}
+.content1 .con .con-1 span{
+    display: inline;
+    font-size: 20px;
+    margin-left: 5px;
+    line-height: 52px;
+}
+.content1 .con .con-2{
+    width: 1024px;
+    height: 320px;
+    margin-top: 25px;
+    float: left;
+    overflow: hidden;
+}
+.content1 .con .con-2 dl{
+    width: 320px;
+    height: 320px;
+    float: left;
+}
+.content1 .con .con-2 .dl1{
+    margin-left: 12px;
+    margin-right: 19px;
+}
+.content1 .con .con-2 .dl2{
+    margin-left: 19px;
+}
+.content1 .con .con-2 h2{
+    color: #000000;
+    width: 280px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.content1 .con .con-2 .dd{
+    width: 280px;
+    height: 74px;
+    font-size: 12px;
+    color: #838385;
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 22px;
+}
+.content1 .con .con-2 .dd2{
+    font-size: 10px;
+    line-height: 24px;
+    height: 24px;
+    margin-left: 20px;
+    float: left;
+    color: #838385;
+}
+.content1 .con .con-3{
+    width: 82px;
+    height: 17px;
+    float: left;
+    line-height: 17px;
+    font-size: 16px;
+    color: #58554e;
+    margin-left: 471px;
+    margin-top: 19px;
+}
+.content2{
+    width: 1145px;
+    height: 645px;
+}
+.content2 .con{
+    width: 1024px;
+    height: 423px;
+    margin: 0 auto;
+}
+.content2 .con .con-1{
+    width: 144px;
+    height: 36px;
+    float: left;
+    margin-left: 14px;
+    margin-top: 42px;
+}
+.content2 .con .con-2{
+    width: 999px;
+    height: 152px;
+    margin-top: 15px;
+    float: left;
+}
+.content2 .con .con-3{
+    width: 1024px;
+    height: 273px;
+    float: left;
+    margin-left: 0;
+    margin-top: 46px;
+}
+.content2 .con .con-3 .dl1{
+    width: 504px;
+    float: left;
+    padding-right: 42px;
+    border-right: dashed 1px #b9b9b9;
+    margin-right: 35px;
+}
+.content2 .con .con-3 h2{
+    font-size: 22px;
+    line-height: 38px;
+    height: 38px;
+}
+.content2 .con .con-3 dt{
+    font-size: 16px;
+    line-height: 76px;
+    height: 76px;
+}
+.content2 .con .con-3 dd{
+    font-size: 12px; 
+    line-height: 22px;
+    height: 16px;
+}
+.content2 .con .con-3 p{
+    font-size: 12px;
+    line-height: 14px;
+    height: 14px;
+    float: left;
+    margin-top: 128px;
+}
+.content2 .con .con-3 ul{
+    margin-top: 28px;
+}
+.content2 .con .con-3 ul li{
+    line-height: 36px;
+    height: 36px;
+}
+.content2 .con .con-3 ul img{
+    margin-top: 14px;
+    margin-right: 8px;
+    float: left;
+}
+.content2 .con .con-3 ul span{
+    display: block;
+    float: right;
+    margin-right: 24px;
+}
+.content2 .con .con-3 h6{
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 10px;
+    height: 14px;
+    float: left;
+}
+.bottom1{
+    width: 1145px;
+    height: 30px;
+    background: #4f4f4f;
+}
+.bottom1 div{
+    float: right;
+    line-height: 30px;
+    margin-right: 62px;
+}
+.bottom2{
+    width: 1145px;
+    height: 220px;
+    background: #313131;
+}
+.bot2{
+    width: 1024px;
+    height: 220px;
+    margin: 0 auto;
+}
+.bottom2 .bot2-1{
+    width: 243px;
+    height: 108px;
+    margin-top: 35px;
+    float: left;
+}
+.bottom2 .bot2-1 ul{    
+    width: 156px;
+    height: 16px;
+    margin-left: -4px;
+    margin-bottom: 17px;
+}
+.bottom2 .bot2-1 ul li{
+    float: left;
+    margin-left: 10px;
+}
+.bottom2 .bot2-1 h4{
+    font-size: 12px;
+    line-height: 18px;
+    color: #989994;
+    height: 18px;
+}
+.bottom2 .bot2-1 h3{
+    font-size: 14px;
+    line-height: 20px;
+    color: #989994;
+    height: 20px;
+}
+.bottom2 .bot2-2{
+    width: 472px;
+    height: 220px;
+    margin-left: 309px;
+    float: left;
+}
+.bottom2 .bot2-2 dl{
+    float: left;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+.bottom2 .bot2-2 dl dt{
+    color: #b0b9b8;
+    height: 46px;
+    font-size: 14px;
+    line-height: 46px;
+}
+.bottom2 .bot2-2 dl dd{
+    height: 20px;
+    font-size: 10px;
+    line-height: 20px;
+}
+.bottom2 .bot2-2 dl dd a{
+    color: #989994;
+}
+
+.content2 .con .con-1{
+    width: 168px;
+    height: 36px;
+    float: left;
+    margin-left: 14px;
+    margin-top: 42px;
+}
+.content2 .con .con-1 span{
+    display: inline;
+    font-size: 20px;
+    margin-left: 5px;
+    line-height: 52px;
+}
+.content2 .con .con-2 li{
+    float: left;
+    margin-left: 0;
+    margin-right: 6px;
+    border: solid 1px #d4d4d4;
+}
+.content2 .con .con-2 .li{
+    margin: 0;
+}
