@@ -1,0 +1,59 @@
+$colorRed:rgb(251, 86, 67);
+
+.all{
+  clear: both;
+  width: 100%;
+  background: rgb(245, 245, 245);
+  h1{
+    width: 1226px;
+    margin: 0 auto;
+    height: 40px;
+    margin-bottom: 40px;
+    font: 20px/40px "楷体";
+  }
+}
+
+main{
+  width: 100%;
+  background: #fff;
+  .main-heart{
+    width: 1226px;
+    margin: 0 auto;
+    .content{
+      
+      ul{
+        height: 350px;
+        width: inherit;
+        li{
+          float: left;
+          height: 200px;
+          width: 243px;
+          text-align: center;
+          border: 1px solid rgb(245, 245, 245);
+          img{
+            width: 70px;
+            height: 70px;
+            margin-top: 25px;
+            margin-bottom: 28px;
+          }
+          .name{
+            font-size: 12px;
+            color: #999;
+            &:hover{
+              color: $colorRed;
+            }
+          }
+          .price{
+            margin-top: 20px;
+            font-size: 20px;
+            color: $colorRed;
+          }
+        }
+      }
+    }
+  }
+  .pa{
+    width: 800px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,86 @@
+body {
+  width: 100%;
+  height: 100%;
+  background: url(../img/register/6.jpg) no-repeat;
+}
+
+main {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+main .main-heart {
+  width: 854px;
+  height: 570px;
+  margin: auto;
+  background: rgba(0, 0, 255, 0.1);
+}
+main .main-heart .logo {
+  margin: 0 auto;
+}
+main .main-heart .logo img {
+  width: 50px;
+  height: 50px;
+}
+main .main-heart h2 {
+  height: 30px;
+  font-size: 30px;
+  color: #eee;
+  margin-top: 48px;
+}
+main .main-heart .infor {
+  margin-top: 30px;
+}
+main .main-heart .infor input, main .main-heart .infor button {
+  display: block;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding-left: 10px;
+}
+main .main-heart .infor label {
+  color: #eee;
+}
+main .main-heart .infor label .agree {
+  width: 40px;
+  display: inline;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+}
+main .main-heart .infor a {
+  text-decoration: none;
+}
+main .main-heart .infor button {
+  margin-bottom: 10px;
+  width: 310px;
+  outline: none;
+  background: #fb5643;
+  color: #fff;
+}
+main .main-heart .infor button:hover {
+  background: #ff3c28;
+}
+
+footer {
+  margin-bottom: 10px;
+  width: 100%;
+}
+footer .footer-heart {
+  height: 80px;
+  text-align: center;
+}
+footer .footer-heart div:nth-child(1) {
+  margin-top: 40px;
+  height: 33px;
+  font-size: 13px;
+  line-height: 33px;
+}
+footer .footer-heart div:nth-child(2) {
+  height: 33px;
+  font-size: 13px;
+  line-height: 33px;
+}
+
+/*# sourceMappingURL=register.css.map */

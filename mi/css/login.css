@@ -1,0 +1,132 @@
+.header-heart, .main-heart, .footer-heart {
+  width: 1130px;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+}
+header .header-heart {
+  padding: 25px 0;
+}
+header .header-heart .logo {
+  height: 48px;
+  font-size: 20px;
+}
+
+.banner {
+  width: 100%;
+  height: 588px;
+  background: url(../img/login/banner.jpg) no-repeat;
+  position: absolute;
+  left: 0;
+  top: 98px;
+  background-position: top center;
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+main .main-heart {
+  height: 588px;
+  position: relative;
+  text-align: center;
+}
+main .main-heart .form {
+  width: 370px;
+  height: 516px;
+  background: #fff;
+  position: absolute;
+  z-index: 99;
+  top: 32px;
+  right: 0;
+  padding: 20px;
+}
+main .main-heart .form .tab {
+  height: 38px;
+}
+main .main-heart .form .tab a {
+  font-size: 24px;
+}
+main .main-heart .form .tab .lo {
+  color: #fb5643;
+}
+main .main-heart .form .tab .re:hover {
+  color: #fb5643;
+}
+main .main-heart .form .tab .re:hover + .lo {
+  color: #000;
+}
+main .main-heart .form .tab span {
+  font-size: 24px;
+  margin: 0 42px;
+  color: #ccc;
+}
+main .main-heart .form form {
+  margin-top: 30px;
+}
+main .main-heart .form form input, main .main-heart .form form button {
+  display: block;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  margin: 10px auto;
+  padding-left: 10px;
+}
+main .main-heart .form form .rem {
+  width: 40px;
+  display: inline;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+}
+main .main-heart .form form button {
+  width: 310px;
+  outline: none;
+  color: skyblue;
+  background: #fb5643;
+}
+main .main-heart .form form button:hover {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #f00;
+  background: #f00;
+}
+main .main-heart .form p {
+  font-size: 12px;
+}
+main .main-heart .form p a {
+  color: #fb5643;
+}
+main .main-heart .form .bo {
+  margin-top: 36px;
+}
+main .main-heart .form .bo a {
+  font-size: 12px;
+  color: #ccc;
+}
+main .main-heart .form .bo span {
+  color: #ddd;
+}
+
+footer {
+  width: 100%;
+}
+footer .footer-heart {
+  height: 130px;
+  text-align: center;
+}
+footer .footer-heart div:nth-child(1) {
+  margin-top: 85px;
+  height: 33px;
+  font-size: 13px;
+  line-height: 33px;
+}
+footer .footer-heart div:nth-child(2) {
+  height: 33px;
+  font-size: 13px;
+  line-height: 33px;
+}
+
+/*# sourceMappingURL=login.css.map */

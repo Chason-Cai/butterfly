@@ -1,0 +1,274 @@
+$colorRed:rgb(251, 86, 67);
+
+header>.header-heart,nav>.nav-heart,footer>.footer-heart,.partner>.partner-heart{
+  width: 1226px;
+  margin: 0 auto;
+}
+
+header{
+  background: rgb(51, 51, 51);
+  width: 100%;
+  height: 40px;
+  >.header-heart{ 
+    >.left{
+      float: left;
+      >.ma{
+
+        >a{
+          display: block;
+          position: relative;
+          &:hover span{
+            display: block;
+            background: #fff;
+          }
+          >span{
+            color: #333;
+            font-size: 16px;
+            width: 155px;
+            height: 185px;
+            display: none;
+            position: absolute;
+            left: -60%;
+            text-align: center;
+            background: none;
+            box-shadow: #333 0 0 2px 0px ;
+            z-index: 9;
+            img{
+              margin-top: 30px;
+              width: 110px;
+              height: 110px;
+            }
+          }
+        }
+      }
+    }
+    >.right{
+      float: right;
+      >li:last-child{
+        width: 120px;
+        height: 40px;
+        background: rgb(66, 66, 66);
+        margin: 0  auto;
+        &:hover{
+          background: #fff;
+        }
+        &:hover a{
+          color: $colorRed;
+        }
+        >a{
+          display: block;
+          border: none;
+          margin-left: 15px;
+        }
+      }
+    }
+    >.left,>.right{
+      >li{
+        float: left;
+        margin-right: 8px;
+        >a{
+          font-size: 12px;
+          height: 12px;
+          line-height: 40px;
+          color: rgb(176, 176, 176);
+          border-left: 1px solid rgb(57, 62, 62);
+          padding-left: 8px;
+          &:hover{
+            color: #eee;
+          }
+        }
+      }
+      >li:first-child{
+        >a{
+          border-left: none;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+
+nav{
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  position: relative;
+  >.nav-heart{
+    height: 100px;
+    >.logo,>ul{
+      float: left;
+    }
+    >.logo{
+      width: 55px;
+      height: 55px;
+      margin-right: 178px;
+      >a{
+        >img{
+          margin-top: 22px;
+        }
+      }
+    }
+    >ul{
+      >li{
+        float: left;
+        margin: 0 11px;
+        >a{
+          font-size: 16px;
+          &:hover{
+            color: $colorRed;
+          }
+        }
+      }
+    }
+    >.search{
+      float: right;
+      height: 50px;
+      margin-top: 22px;
+      >input{
+        padding-left: 10px;
+        font-size: 16px;
+        width: 150px;
+        height: 50px;
+        display: block;
+        float: left;
+        border: 1px solid #777;
+        border-right: none;
+      }
+      >span{
+        display: block;
+        float: left;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #777;
+      }
+    }
+  }
+  >.menu{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    height: 230px;
+    background: rgb(255, 200, 200);
+    display: none;
+    z-index: 99;
+  }
+}
+
+
+
+
+footer{
+  width: 100%;
+  background: #fff;
+  height: 332px;
+  >.footer-heart{
+    >.top{
+      height: 52px;
+      border-bottom: 1px solid #ccc;
+      margin-top: 27px;
+      >li{
+        height: 25px;
+        line-height: 25px;
+        padding: 0 70px;
+        float: left;
+        border-right: 1px solid #ccc;
+        &:last-child{
+          border: none;
+        }
+        >a{
+          font-size: 16px;
+          &:hover{
+            color: $colorRed;
+          }
+        }
+      }
+    }
+    >.left{
+      float: left;
+      margin-top: 40px;
+      >dl{
+        width: 160px;
+        float: left;
+        >dt{
+          height: 44px;
+          font-size: 14px;
+        }
+        >dd{
+          height: 28px;
+          font-size: 12px;
+          >a:hover{
+            color: $colorRed;
+          }
+        }
+      }
+    }
+    >.right{
+      float: right;
+      width: 142px;
+      height: 110px;
+      margin-top: 40px;
+      padding: 0 62px;
+      >h2{
+        font-size: 16px;
+        line-height: 20px;
+        height: 20px;
+        color: $colorRed;
+      }
+      >h3{
+        font-size: 12px;
+        line-height: 32px;
+        height: 32px;
+        color: rgb(70, 70, 70);
+      }
+      >.server{
+        width: 118px;
+        height: 28px;
+        line-height: 28px;
+        border: 1px solid $colorRed;
+        text-align: center;
+        &:hover{
+          background: $colorRed;
+        }
+        >a{
+          color: $colorRed;
+        }
+        &:hover>a{
+          color: #fff;
+          transition: 0.3s all;
+        }
+      }
+    }
+
+  }
+}
+
+.partner{
+  width: 100%;
+  height: 140px;
+  background: rgb(245, 245, 245);
+  >.partner-heart{
+    >.bottom{
+      >.logo{
+        float: left;
+        >img{
+          margin-top: 30px;
+        }
+      }
+      >.other{
+        float: left;
+        margin: 30px 0 0 10px;
+        width: 968px;
+        font-size: 12px;
+        >span:first-child{
+          color: #333;
+          font-weight: 700px;
+        }
+        >span:last-child{
+          color: #999;
+          font-weight: 700px;
+        }
+      }
+    }
+  }
+}
